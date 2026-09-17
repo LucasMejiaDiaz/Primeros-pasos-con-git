@@ -1,9 +1,10 @@
 #!/bin/bash
 
-carpeta=$1
+palabra=$1
+carpeta=$2
 
-if [ -z "$carpeta" ]; then
-    echo "Uso: ./buscar_home.sh <carpeta>"
+if [ -z "$palabra" ] || [ -z "$carpeta" ]; then
+    echo "Uso: bash buscar_home.sh <palabra o frase> <carpeta>"
     exit 1
 fi
 
@@ -12,4 +13,4 @@ if [ ! -d "$carpeta" ]; then
     exit 1
 fi
 
-grep -ril "home" "$carpeta"
+grep -rilF -- "$palabra" "$carpeta"
